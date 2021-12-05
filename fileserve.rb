@@ -5,21 +5,21 @@
 class Fileserve < Formula
   desc "Golang-based simple file server to serve static files of the current working directory"
   homepage "https://github.com/hupe1980/fileserve"
-  version "0.0.7"
+  version "0.0.8"
   license "MIT"
 
   on_macos do
-    if Hardware::CPU.intel?
-      url "https://github.com/hupe1980/fileserve/releases/download/v0.0.7/fileserve_Darwin_x86_64.tar.gz"
-      sha256 "f279b3754699206c30ec1dcc85f715cc35fcd412eb876299cdac89bec1266e75"
+    if Hardware::CPU.arm?
+      url "https://github.com/hupe1980/fileserve/releases/download/v0.0.8/fileserve_Darwin_arm64.tar.gz"
+      sha256 "471050b137244a565059dbae4e849b2ef3e8c4012494f604d034dc145f96c59b"
 
       def install
         bin.install "fileserve"
       end
     end
-    if Hardware::CPU.arm?
-      url "https://github.com/hupe1980/fileserve/releases/download/v0.0.7/fileserve_Darwin_arm64.tar.gz"
-      sha256 "e4c66bfc4bd73e963dba215ed42943ef6abbc1d53f808aef37331c150c0585d0"
+    if Hardware::CPU.intel?
+      url "https://github.com/hupe1980/fileserve/releases/download/v0.0.8/fileserve_Darwin_x86_64.tar.gz"
+      sha256 "6d76ccf107ee71b277b4912a7de7f97845e1ed2e145ddd66925431231cf76583"
 
       def install
         bin.install "fileserve"
@@ -28,25 +28,25 @@ class Fileserve < Formula
   end
 
   on_linux do
+    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
+      url "https://github.com/hupe1980/fileserve/releases/download/v0.0.8/fileserve_Linux_arm64.tar.gz"
+      sha256 "3e369bfc59514f109f5dfc79c81b138f44d216ae8b47ea293d0bb71c17f248d5"
+
+      def install
+        bin.install "fileserve"
+      end
+    end
     if Hardware::CPU.arm? && !Hardware::CPU.is_64_bit?
-      url "https://github.com/hupe1980/fileserve/releases/download/v0.0.7/fileserve_Linux_armv6.tar.gz"
-      sha256 "73b46386ab79a0e266c95f288618f836fbcb277d53aeea729bdc5959a05f8ace"
+      url "https://github.com/hupe1980/fileserve/releases/download/v0.0.8/fileserve_Linux_armv6.tar.gz"
+      sha256 "4c89ce23b8ab25aff41040fea7683f0efbc23f6bb9eab10aea326268b1219688"
 
       def install
         bin.install "fileserve"
       end
     end
     if Hardware::CPU.intel?
-      url "https://github.com/hupe1980/fileserve/releases/download/v0.0.7/fileserve_Linux_x86_64.tar.gz"
-      sha256 "1c2fbd1970fd69afe873ebbb80580e38ab1a675736b4c4640d3094d521f096b6"
-
-      def install
-        bin.install "fileserve"
-      end
-    end
-    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/hupe1980/fileserve/releases/download/v0.0.7/fileserve_Linux_arm64.tar.gz"
-      sha256 "cc8aa275cb205d5fe8a774a11f0495b191fed97715a277f83ffc1a82b8a2b1f0"
+      url "https://github.com/hupe1980/fileserve/releases/download/v0.0.8/fileserve_Linux_x86_64.tar.gz"
+      sha256 "504a51059cb4442f64b7cbce600e4a4e554371cda20d4606fa6bacf3d6c8eb95"
 
       def install
         bin.install "fileserve"
